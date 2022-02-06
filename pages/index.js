@@ -30,6 +30,7 @@ export default function Home() {
           {coffeeStores.map((coffeeStore) => {
             return (
               <Card
+                key={coffeeStore.id}
                 name={coffeeStore.name}
                 imgUrl={coffeeStore.imgUrl}
                 href={`/coffee-store/${coffeeStore.id}`}
