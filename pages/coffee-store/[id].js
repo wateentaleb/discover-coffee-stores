@@ -25,17 +25,15 @@ const CoffeeStore = (props) => {
   if (router.isFallback) {
     return <div> Loading...</div>;
   }
+  const { address, name, neighbourhood } = props.coffeeStore;
   return (
     <div>
-      Coffee Store Page{router.query.id}
       <Link href="/">
         <a>Back to Home</a>
       </Link>
-      <Link href="/coffee-store/dynamic">
-        <a>Go to page dynamic</a>
-      </Link>
-      <p>{props.coffeeStore.address}</p>
-      <p>{props.coffeeStore.name}</p>
+      <p>{address}</p>
+      <p>{name}</p>
+      <p>{neighbourhood}</p>
     </div>
   );
 };
