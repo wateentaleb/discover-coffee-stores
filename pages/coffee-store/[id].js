@@ -17,11 +17,14 @@ export function getStaticProps(staticProps) {
 export function getStaticPaths(staticPaths) {
   return {
     paths: [{ params: { id: "0" } }, { params: { id: "1" } }],
-    fallback: false,
+    fallback: true,
   };
 }
 const CoffeeStore = (props) => {
   const router = useRouter();
+  if (router.isFallback) {
+    return <div> Loading...</div>;
+  }
   return (
     <div>
       Coffee Store Page{router.query.id}
