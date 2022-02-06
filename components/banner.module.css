@@ -1,8 +1,8 @@
 /** By default, this is a mobile breakpoint **/
 .container {
     margin-bottom: 1rem;
-    z-index: 2;
     position: relative;
+    z-index: 2;
   }
   
   .title {
@@ -20,7 +20,7 @@
   
   .title2 {
     display: block;
-    color: var(--text-dark-blue);
+    color:var(--text-dark-blue);
   }
   
   .subTitle {
@@ -28,7 +28,7 @@
     font-size: 1.5rem /* 24px */;
     line-height: 2rem /* 32px */;
   
-    color: var(--text-dark-blue)
+    color: var(--text-white-100);
   }
   
   .buttonWrapper {
@@ -41,7 +41,7 @@
     color: white;
     outline: 0;
     border: 0px;
-    border-radius: 1rem;
+  
     padding-top: 1rem /* 16px */;
     padding-bottom: 1rem /* 16px */;
     font-size: 1.125rem /* 18px */;
@@ -51,7 +51,7 @@
   }
   
   .button:hover {
-    background-color: var(--text-purple-dark);
+    background-color: var(--text-dark-blue);
   }
   
   /** 
@@ -134,4 +134,3 @@
       display: inline;
     }
   }
-  
