@@ -21,6 +21,9 @@ export default function Home() {
           buttonText="View stores nearby"
           handleOnClick={handleOnBannerBtnClick}
         />
+        <div className={styles.heroImage}>
+          <Image src="/static/hero-image.png" width={1200} height={450} />
+        </div>
       </main>
     </div>
   );
