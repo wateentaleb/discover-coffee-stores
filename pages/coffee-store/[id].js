@@ -1,15 +1,18 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
-import coffeeStoresData from "../../data/coffee-store.json";
+// import coffeeStoresData from "../../data/coffee-store.json";
+import { fetchCoffeeStores } from "../../lib/coffee-stores";
 import styles from "../../styles/coffee-store.module.css";
 import Image from "next/image";
 import cls from "classnames";
 
-export function getStaticProps(staticProps) {
+export async function getStaticProps(staticProps) {
+  const coffeeStores = await fetchCoffeeStores();
+
   return {
     props: {
-      coffeeStore: coffeeStoresData.find((coffeeStore) => {
+      coffeeStore: coffeeStores.find((coffeeStore) => {
         const params = staticProps.params;
         return coffeeStore.id == params.id; //dynamic id
       }),
@@ -17,8 +20,9 @@ export function getStaticProps(staticProps) {
   };
 }
 
-export function getStaticPaths(staticPaths) {
-  const paths = coffeeStoresData.map((coffeeStore) => {
+export async function getStaticPaths(staticPaths) {
+  const coffeeStores = await fetchCoffeeStores();
+  const paths = coffeeStores.map((coffeeStore) => {
     return {
       params: { id: coffeeStore.id.toString() },
     };
@@ -46,7 +50,7 @@ const CoffeeStore = (props) => {
         <div className={styles.col1}>
           <div className={styles.backToHomeLink}>
             <Link href="/">
-              <a>Back to Home</a>
+              <a>← Back to Home</a>
             </Link>
           </div>
           <div className={styles.nameWrapper}>
@@ -54,7 +58,10 @@ const CoffeeStore = (props) => {
           </div>
           <div className={styles.storeImgWrapper}>
             <Image
-              src={imgUrl}
+              src={
+                imgUrl ||
+                "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
+              }
               width={600}
               height={360}
               className={styles.storeImg}
@@ -68,11 +75,12 @@ const CoffeeStore = (props) => {
             <p className={styles.text}>{address}</p>
           </div>
 
-          <div className={styles.iconWrapper}>
-            <Image src="/static/icons/nearMe.svg" width="24" height="24" />
-            <p className={styles.text}>{neighbourhood}</p>
-          </div>
-
+          {neighbourhood && (
+            <div className={styles.iconWrapper}>
+              <Image src="/static/icons/nearMe.svg" width="24" height="24" />
+              <p className={styles.text}>{neighbourhood}</p>
+            </div>
+          )}
           <div className={styles.iconWrapper}>
             <Image src="/static/icons/star.svg" width="24" height="24" />
             <p className={styles.text}>1</p>
