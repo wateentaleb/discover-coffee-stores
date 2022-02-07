@@ -8,6 +8,7 @@ const useTrackLocation = () => {
   const success = (position) => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
+
     setLatLong(`${latitude},${longitude}`);
     setLocationErrorMsg("");
     setIsFindingLocation(false);
