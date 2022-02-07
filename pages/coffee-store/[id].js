@@ -7,7 +7,7 @@ import Image from "next/image";
 import cls from "classnames";
 import { StoreContext } from "../_app";
 import { useContext, useState, useEffect } from "react";
-
+import { isEmpty } from "../../utils/index";
 export async function getStaticProps(staticProps) {
   const coffeeStores = await fetchCoffeeStores();
   const findCoffeeStoreById = coffeeStores.find((coffeeStore) => {
@@ -48,7 +48,7 @@ const CoffeeStore = (initalProps) => {
 
   useEffect(() => {
     if (isEmpty(initalProps.coffeeStore)) {
-      if (coffeeStore.length > 0) {
+      if (coffeeStores.length > 0) {
         const findCoffeeStoreById = coffeeStores.find((coffeeStore) => {
           return coffeeStore.id == id; //dynamic id
         });
