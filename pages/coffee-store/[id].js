@@ -29,7 +29,7 @@ export async function getStaticPaths(staticPaths) {
   });
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 }
 const CoffeeStore = (props) => {

@@ -16,6 +16,7 @@
 .heroImage {
   position: absolute;
   top: 0px;
+  margin-left: 5rem;
   z-index: 1;
 }
 
