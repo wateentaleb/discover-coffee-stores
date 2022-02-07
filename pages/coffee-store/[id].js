@@ -9,13 +9,13 @@ import cls from "classnames";
 
 export async function getStaticProps(staticProps) {
   const coffeeStores = await fetchCoffeeStores();
-
+  const findCoffeeStoreById = coffeeStores.find((coffeeStore) => {
+    const params = staticProps.params;
+    return coffeeStore.id == params.id; //dynamic id
+  });
   return {
     props: {
-      coffeeStore: coffeeStores.find((coffeeStore) => {
-        const params = staticProps.params;
-        return coffeeStore.id == params.id; //dynamic id
-      }),
+      coffeeStore: findCoffeeStoreById ? findCoffeeStoreById : {},
     },
   };
 }
@@ -29,7 +29,7 @@ export async function getStaticPaths(staticPaths) {
   });
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 const CoffeeStore = (props) => {
