@@ -2,9 +2,9 @@ import "../styles/globals.css";
 import Image from "next/image";
 import { createContext, useReducer } from "react";
 
-const StoreContext = createContext();
+export const StoreContext = createContext();
 
-const ACTION_TYPES = {
+export const ACTION_TYPES = {
   SET_LAT_LONG: "SET_LAT_LONG",
   SET_COFFEE_STORES: "SET_COFFEE_STORES",
 };
@@ -15,7 +15,7 @@ const storeReducer = (state, action) => {
       return { ...state, latLong: action.payload.latLong };
     }
     case ACTION_TYPES.SET_COFFEE_STORES: {
-      return { ...state, coffee: action.payload.coffee };
+      return { ...state, coffeeStores: action.payload.coffeeStores };
     }
     default: {
       throw new Error(`Invalid action ${action.type}`);
