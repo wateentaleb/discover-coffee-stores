@@ -27,7 +27,7 @@ export default function Home(props) {
   useEffect(async () => {
     if (latLong) {
       try {
-        const fetchedCoffeeStores = await fetchCoffeeStores(latLong);
+        const fetchedCoffeeStores = await fetchCoffeeStores(latLong, 30);
         console.log({ fetchedCoffeeStores });
         setCoffeeStores(fetchedCoffeeStores);
       } catch (error) {
